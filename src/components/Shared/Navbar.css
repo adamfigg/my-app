@@ -1,0 +1,6 @@
+.logoContainer{
+    justify-content: space-around;
+    display: flex;
+    background-color: #fcdad1;
+    padding: 15px;
+}

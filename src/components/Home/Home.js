@@ -30,7 +30,7 @@ class Home extends Component {
           <h2>Carlsbad Cottage Art Gallery</h2>
         </div>
         <p className="App-intro">
-         Dare the dream in color.
+         THIS IS WHERE THE GALLERY WILL START.
         </p>
 
         {/*<button hidden={this.state.paintingsList.length > 0} onClick={this.loadPaintings} >Click to see our gallery</button>

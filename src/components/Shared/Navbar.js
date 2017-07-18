@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
+import './Navbar.css'
 
 class Navbar extends Component {
     render() {
         return (
-            <div>
+            <div className='logoContainer'>
               <Link to='/'>
-                <img classname="home" src={require("./home.png")}/>
+                <img  src={require("./gallery.png")}/>
               </Link> 
                <Link to='/shopping-cart'>
-               <img classname="shopping-cart" src={require("./online-store.png")}/>
+               <img  src={require("./shopping-cart.png")}/>
                </Link> 
                <Link to='/about'>
-               <img classname="about" src={require("./hello-speech-bubble.png")}/>
+               <img  src={require("./hello-speech-bubble.png")}/>
                </Link> 
             </div>
         );
