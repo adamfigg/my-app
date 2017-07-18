@@ -7,10 +7,22 @@ class Home extends Component {
     constructor() {
     super();
     this.state = {
-      paintingsList:[]
+      paintings:[]
     }
     // this.loadPaintings = this.loadPaintings.bind(this);
   }
+
+      componentDidMount() {
+        const results = axios.get(`http://localhost:4000/`)
+            .then(res => res.data)
+            .then((finalResult) => {
+                this.setState({
+                    paintings: finalResult
+                });
+                console.log(this.state)
+            });
+    }
+
 
   // loadPaintings() {
   //   axios.get(THIS IS WHERE I NEED TO ADD THE LINK TO MY API!!!!).then(response => response.data).then(
@@ -24,6 +36,22 @@ class Home extends Component {
 
 
   render() {
+                const Paintings = this.state.paintings
+            .map((data, i) => {
+              return (
+                <div> 
+              <h1>{data.title}</h1>
+              <img src={data.imageurl} />
+              </div>
+
+              )
+                // return <Paintings
+                //             image = {data.imageurl}
+                //             title = {data.title}
+                //             size = {data.size}
+                //             price = {data.price}
+                //             key={data.id}/>                
+            }) 
     return (
       <div className="App">
         <div className="App-header">
@@ -32,6 +60,8 @@ class Home extends Component {
         <p className="App-intro">
          THIS IS WHERE THE GALLERY WILL START.
         </p>
+
+        {Paintings}
 
         {/*<button hidden={this.state.paintingsList.length > 0} onClick={this.loadPaintings} >Click to see our gallery</button>
 
