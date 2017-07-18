@@ -27,10 +27,10 @@ class Home extends Component {
     return (
       <div className="App">
         <div className="App-header">
-          <h2>Cozy Carlsbad Art Gallery</h2>
+          <h2>Carlsbad Cottage Art Gallery</h2>
         </div>
         <p className="App-intro">
-         "Life is a blank canvas...paint it with all the colors of memories to be made and to be remembered."
+         Dare the dream in color.
         </p>
 
         {/*<button hidden={this.state.paintingsList.length > 0} onClick={this.loadPaintings} >Click to see our gallery</button>
