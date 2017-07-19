@@ -1,0 +1,27 @@
+
+
+
+.App-header {
+    font-family: 'Yellowtail', cursive;
+    font-size: 2em;
+    text-shadow: 2px 2px #f7eaf2 ;
+    padding-right: 15px;
+    ;
+}
+
+.App {
+  text-align: center;
+}
+
+
+.painting-display {
+    background-color: pink;
+}
+
+.painting-styles {
+    max-height: 250px;
+}
+
+h2 {
+    
+}
