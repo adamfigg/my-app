@@ -10,7 +10,6 @@ class Home extends Component {
     this.state = {
       paintings: []
     }
-    // this.loadPaintings = this.loadPaintings.bind(this);
   }
 
   componentDidMount() {
@@ -35,9 +34,9 @@ class Home extends Component {
             <img className='painting-styles' src={data.imageurl} />
             <h3>size: {data.size}</h3>
             <h3>price: ${data.price}</h3>
+            <button>Add to shopping cart</button>
             <br />
           </div>
-
         )
 
       })
@@ -45,11 +44,11 @@ class Home extends Component {
       <div className="App">
         <div className="App-header">
           <style>@import url('https://fonts.googleapis.com/css?family=Yellowtail');</style>
-          <p>Carlsbad Cottage Art Gallery</p>
+          <style>@import url('https://fonts.googleapis.com/css?family=Quicksand');</style>
+          <p>Carlsbad Cottage Art Boutique</p>
         </div>
 
         {Paintings}
-
 
       </div>
     );
