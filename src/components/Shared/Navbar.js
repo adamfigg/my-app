@@ -15,7 +15,7 @@ class Navbar extends Component {
                <Link to='/about'>
                <img  src={require("./hello-speech-bubble.png")}/>
                </Link> 
-               <button>Log in</button>
+               <a href= 'http://localhost:4000/auth'><button>Log in</button></a>
             </div>
         );
     }
