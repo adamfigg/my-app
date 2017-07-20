@@ -18,6 +18,10 @@ app.use(cors({origin: 'http://localhost:3000'}))
 massive( connectionString ).then( dbInstance => {
     app.set('db' , dbInstance);
 
+    dbInstance.set_schema()
+      .then( () => console.log('Tables reset') )
+      .catch( (err) => console.log(err))
+
 
 app.get('/', products_controller.getAll)
 
@@ -41,11 +45,19 @@ passport.use(new Auth0Strategy({    //this needs to be copied EXACTLY the same c
   function(accessToken, refreshToken, extraParams, profile, done) {
       console.log('someone tried to access', profile);
 
-
 //logic for passing in new or existing account
 
 
-
+// db.getUser([profile.auth0.id]).then (function(err, user) => {
+  
+//     if (user) {
+//       done(null, user)
+//     }else {
+//       db.createuser().then.(function(err, user) {
+//         done(null, user)
+//       })
+//     }
+//   })
 
 
 
