@@ -87,13 +87,21 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
+// my endpoints
+app.get('/api/all-paintings', (req, res,next) => {
+  dbInstance.get_paintings().then( paintings => res.status(200).send(paintings))
+})
+
+
+
+
+
+
+
 //these are the endppints, this first one kicks off the auth session
 app.get('/auth', passport.authenticate('auth0'));
-
 app.get('/auth/callback', passport.authenticate('auth0', 
-
-{ successRedirect: 'http://localhost:3000/'}));
-
+  { successRedirect: 'http://localhost:3000/'}));
 app.get('/auth/me', function(req, res) {
   if (!req.user) return res.status(200).send('No one logged in!');
   res.status(200).send(req.user);
