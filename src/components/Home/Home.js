@@ -8,19 +8,27 @@ class Home extends Component {
   constructor() {
     super();
     this.state = {
-      paintings: []
+      paintings: [],
+      currentUser: {}
     }
   }
 
   componentDidMount() {
-    const results = axios.get(`http://localhost:4000/`)
-      .then(res => res.data)
-      .then((finalResult) => {
+    axios.get(`http://localhost:4000/`)
+      .then(response => {
         this.setState({
-          paintings: finalResult
-        });
-        console.log(this.state)
-      });
+          paintings: response.data
+        })
+      })
+      
+          //this is when the user gets pushed back to the home page (created with Liz and Ashlynn)
+    axios.get('http://localhost:4000/auth/me')
+    .then( response => {
+      this.setState({
+        currentUser: response.data
+      })
+    })
+      
   }
 
 

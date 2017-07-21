@@ -59,7 +59,20 @@ passport.use(new Auth0Strategy({    //this needs to be copied EXACTLY the same c
 //     }
 //   })
 
-
+dbInstance.getUserAuthID ([profile.identities[0].user_id])
+.then((user) => {
+  if (user[0]) {
+    return done(null, user[0]);
+     } else {
+       dbInstance.createUser(profile._json.given_name, profile._json.family_name, profile._json.email, profile.identities[0].user_id)
+       .then((err, user) => {
+         dbInstance.getUserAuthID(profile.identities[0].user_id)
+         .then((user) => {
+           return(null, user[0])
+         })
+         .catch( err => console.log(err));
+       }) }
+})
 
 
 
@@ -87,10 +100,11 @@ passport.deserializeUser(function(user, done) {
   done(null, user);
 });
 
-// my endpoints
+// my endpoints <---- this is the endpoint set up by Gus. Use this as the example to build all of the others 
 app.get('/api/all-paintings', (req, res,next) => {
   dbInstance.get_paintings().then( paintings => res.status(200).send(paintings))
 })
+
 
 
 
