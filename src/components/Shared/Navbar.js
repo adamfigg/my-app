@@ -17,6 +17,7 @@ constructor(props) {
 componentDidMount() {
     axios.get('/auth/me')
     .then( res => {
+        console.log(res.data)
         if(res.data.displayName)
         this.setState({
             user: res.data.name["givenName"]

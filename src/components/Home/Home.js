@@ -14,7 +14,7 @@ class Home extends Component {
   }
 
   componentDidMount() {
-    axios.get(`http://localhost:4000/`)
+    axios.get(`/api/get-paintings`)
       .then(response => {
         this.setState({
           paintings: response.data
@@ -22,7 +22,7 @@ class Home extends Component {
       })
       
           //this is when the user gets pushed back to the home page (created with Liz and Ashlynn)
-    axios.get('http://localhost:4000/auth/me')
+    axios.get('/auth/me')
     .then( response => {
       this.setState({
         currentUser: response.data
@@ -32,17 +32,21 @@ class Home extends Component {
   }
 
 
+    addToCart (paintingId) {
+axios.post(`/api/addToCart/${paintingId}`)
+    }
+
 
   render() {
     const Paintings = this.state.paintings
       .map((data, i) => {
         return (
-          <div className='painting-display'>
+          <div className='painting-display' key={i}>
             <h1>{data.title}</h1>
             <img className='painting-styles' src={data.imageurl} />
             <h3>size: {data.size}</h3>
             <h3>price: ${data.price}</h3>
-            <button>Add to shopping cart</button>
+            <button onClick= {()=>{this.addToCart(data.id)}}>Add to shopping cart</button>
             <br />
           </div>
         )
@@ -62,5 +66,13 @@ class Home extends Component {
     );
   }
 }
+
+
+
+
+// function example(piainting.id) {
+// this is where the request to the server is made
+// }
+
 
 export default Home;

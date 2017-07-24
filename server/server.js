@@ -23,7 +23,7 @@ massive(connectionString).then(dbInstance => {
     .catch((err) => console.log(err))
 
 
-  app.get('/', products_controller.getAll)
+  app.get('/api/get-paintings', products_controller.getAll)
 
   //what I added with Joe's file he sent to us
   app.use(session({
@@ -64,22 +64,8 @@ massive(connectionString).then(dbInstance => {
           }
         })
 
-
-
-
-
-
-
-
-
-
-
-
-
-
       done(null, profile)
     }));
-
 
   passport.serializeUser(function (user, done) {      //at this point the authentication process is over
     console.log('serializing', user);
@@ -97,12 +83,6 @@ massive(connectionString).then(dbInstance => {
   })
 
 
-
-
-
-
-
-
   //these are the endppints, this first one kicks off the auth session
   app.get('/auth', passport.authenticate('auth0'));
 
@@ -111,15 +91,29 @@ massive(connectionString).then(dbInstance => {
     { successRedirect: 'http://localhost:3000/' }));
 
 
-  app.get('/auth/me', function (req, res) {
+  app.get('/auth/me', function (req, res) { 
     if (!req.user) {
       return res.status(200).send("");
     }
     else {
+      
       res.status(200).send(req.user);
     }
   });
 
+//passing in the painting ID
+  app.post('/api/addToCart/:paintingId', (req, res, next) => {
+  
+    dbInstance.add_to_cart(req.user.identities[0].user_id, req.params.paintingId)
+    res.status(200).send('awesome')
+  })
+
+
+//removing item from cart
+  app.delete('/api/removeFromCart/:cartId', (req, res, next) => {
+    dbInstance.remove_from_cart(req.params.cartId)
+    res.status(200).send('something was removed from the cart')
+  })
 
   //This is the part that will let the loggedin user to log out
   app.get('/logout', function (req, res) {
@@ -127,7 +121,13 @@ massive(connectionString).then(dbInstance => {
     res.redirect('http://localhost:3000/');
   });
 
-
+//logic to display the cart
+app.get('/api/getCart', (req, res, next) => {
+  dbInstance.get_cart(req.user.identities[0].user_id)
+  .then((cart) => {
+    res.status(200).send(cart)
+                  })
+})
 
 
 

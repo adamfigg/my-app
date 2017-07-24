@@ -1,0 +1,1 @@
+delete from cart where painting_id=$1
