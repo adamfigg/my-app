@@ -45,7 +45,7 @@ class ShoppingCart extends Component {
                         <img className='painting-styles' src={cart.imageurl} />
                         <h3>size: {cart.size}</h3>
                         <h3>price: ${cart.price}</h3>
-                        <button onClick={() => { this.removeFromCart(cart.id) }}>Remove from cart</button>
+                        <button onClick={() => { this.removeFromCart(cart.cart_id) }}>Remove from cart</button>
                         <br />
                     </div>
                 )

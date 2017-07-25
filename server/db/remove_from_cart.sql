@@ -1,1 +1,1 @@
-delete from cart where painting_id=$1
+delete from cart where id = $1
