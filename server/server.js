@@ -43,7 +43,7 @@ massive(connectionString).then(dbInstance => {
     //set up to here and then go to the Auth0 site and create a new app/client
     //all three of the domian file,client secret and other stuff from Auth0 goes into config.js
     function (accessToken, refreshToken, extraParams, profile, done) {
-      console.log('someone tried to access', profile);
+      // console.log('someone tried to access', profile);
 
       //logic for passing in new or existing account
 
@@ -68,12 +68,12 @@ massive(connectionString).then(dbInstance => {
     }));
 
   passport.serializeUser(function (user, done) {      //at this point the authentication process is over
-    console.log('serializing', user);
+    // console.log('serializing', user);
     done(null, user);
   });
 
   passport.deserializeUser(function (user, done) {
-    console.log('deserialize', user)
+    // console.log('deserialize', user)
     done(null, user);
   });
 
@@ -126,9 +126,23 @@ app.get('/api/getCart', (req, res, next) => {
   dbInstance.get_cart(req.user.identities[0].user_id)
   .then((cart) => {
     res.status(200).send(cart)
-                  })
+    })
+});
+
+app.get('/api/getSum', (req, res, next)=> {
+  dbInstance.cart_total([]).then(total => {
+        console.log(total)
+        res.status(200).send(total)
+      })
 })
 
+// app.get('/api/cartTotal', (req, res, next) => {
+//   console.log(req.user.identities[0].user_id)
+//   dbInstance.cart_total(req.user.identities[0].user_id).then((cart) =>{
+//     console.log(cart)
+//     // res.status(200).send('total amount created')
+//   });
+// })
 
 
 

@@ -8,33 +8,42 @@ class ShoppingCart extends Component {
         super();
         this.state = {
             cart: [],
-            currentUser: {}
+            currentUser: {},
+            total: ''
         }
     }
     componentDidMount() {
         axios.get(`/api/getCart`)
             .then(response => {
-                console.log(response.data)
-                this.setState({
-                    cart: response.data
+                    this.setState({
+                        cart: response.data,
+                    })
+                axios.get('/api/getSum')
+                .then(res => {
+                    this.setState({
+                        total: res.data[0].sum
+                    })
                 })
             })
     }
-
 
     removeFromCart(cartId) {
         axios.delete(`/api/removeFromCart/${cartId}`)
         .then(()=>{
              axios.get(`/api/getCart`)
             .then(response => {
-                console.log(response.data)
                 this.setState({
                     cart: response.data
+                })
+                 axios.get('/api/getSum')
+                .then(res => {
+                    this.setState({
+                        total: res.data[0].sum
+                    })
                 })
             })
         })
     }
-
 
     render() {
         const ShoppingCart = this.state.cart
@@ -53,6 +62,7 @@ class ShoppingCart extends Component {
             })
         return (
             <div>
+                Your shopping cart total is: ${this.state.total}
                 {ShoppingCart}
             </div>
         );

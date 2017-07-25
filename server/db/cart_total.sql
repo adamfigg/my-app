@@ -1,0 +1,1 @@
+select sum(price) from paintings join cart on cart.painting_id = paintings.id
