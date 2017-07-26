@@ -15,34 +15,34 @@ class ShoppingCart extends Component {
     componentDidMount() {
         axios.get(`/api/getCart`)
             .then(response => {
-                    this.setState({
-                        cart: response.data,
-                    })
-                axios.get('/api/getSum')
-                .then(res => {
-                    this.setState({
-                        total: res.data[0].sum
-                    })
+                this.setState({
+                    cart: response.data,
                 })
+                axios.get('/api/getSum')
+                    .then(res => {
+                        this.setState({
+                            total: res.data[0].sum
+                        })
+                    })
             })
     }
 
     removeFromCart(cartId) {
         axios.delete(`/api/removeFromCart/${cartId}`)
-        .then(()=>{
-             axios.get(`/api/getCart`)
-            .then(response => {
-                this.setState({
-                    cart: response.data
-                })
-                 axios.get('/api/getSum')
-                .then(res => {
-                    this.setState({
-                        total: res.data[0].sum
+            .then(() => {
+                axios.get(`/api/getCart`)
+                    .then(response => {
+                        this.setState({
+                            cart: response.data
+                        })
+                        axios.get('/api/getSum')
+                            .then(res => {
+                                this.setState({
+                                    total: res.data[0].sum
+                                })
+                            })
                     })
-                })
             })
-        })
     }
 
     render() {
@@ -61,9 +61,13 @@ class ShoppingCart extends Component {
 
             })
         return (
-            <div>
-                Your shopping cart total is: ${this.state.total}
-                {ShoppingCart}
+            <div className="App">
+                <div>
+                    <style>@import url('https://fonts.googleapis.com/css?family=Yellowtail');</style>
+                    <style>@import url('https://fonts.googleapis.com/css?family=Quicksand');</style>
+                    Your shopping cart total is: ${this.state.total}
+                    {ShoppingCart}
+                </div>
             </div>
         );
     }
