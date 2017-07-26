@@ -23,4 +23,4 @@ yarn-error.log*
 secrets.js
 config.js
 set_schema.sql
-
+stripeKey.js

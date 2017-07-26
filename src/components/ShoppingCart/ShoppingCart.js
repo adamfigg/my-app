@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import './ShoppingCart.css';
+import stripe from './stripeKey';
+import StripeCheckout from 'react-stripe-checkout';
 
 class ShoppingCart extends Component {
 
@@ -11,7 +13,20 @@ class ShoppingCart extends Component {
             currentUser: {},
             total: ''
         }
+
+
     }
+        //More stripe copy and paste for token
+    onToken = (token) => {
+        token.card = void 0;
+        console.log('token', token);
+        axios.post('http://localhost:4000/api/payment', { token, amount: this.state.total*100 }).then(response => {
+            alert('Thanks so much for support your local artists!')
+        });
+    }
+
+
+
     componentDidMount() {
         axios.get(`/api/getCart`)
             .then(response => {
@@ -46,6 +61,12 @@ class ShoppingCart extends Component {
     }
 
     render() {
+        const StripePayment = (<StripeCheckout
+            token={this.onToken}
+            stripeKey={stripe.pub_key}
+            amount={this.state.total*100} 
+            currency="USD"/>);
+
         const ShoppingCart = this.state.cart
             .map((cart, i) => {
                 return (
@@ -66,6 +87,9 @@ class ShoppingCart extends Component {
                     <style>@import url('https://fonts.googleapis.com/css?family=Yellowtail');</style>
                     <style>@import url('https://fonts.googleapis.com/css?family=Quicksand');</style>
                     Your shopping cart total is: ${this.state.total}
+                    <div>
+                        {StripePayment}
+                    </div>
                     {ShoppingCart}
                 </div>
             </div>
