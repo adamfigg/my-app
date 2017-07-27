@@ -13,6 +13,7 @@ const stripe = require('stripe')(config.secret_key);
 
 const app = express();
 
+app.use(express.static(__dirname+'/../build'));
 app.use(bodyParser.json());
 app.use(cors({ origin: 'http://localhost:3000' }))
 
@@ -92,7 +93,7 @@ massive(connectionString).then(dbInstance => {
     { successRedirect: 'http://localhost:3000/' }));
 
 
-  app.get('/auth/me', function (req, res) { 
+  app.get('/auth/me', function (req, res) {
     if (!req.user) {
       return res.status(200).send("");
     }
@@ -178,7 +179,7 @@ app.post('/api/payment', function(req, res, next){
 
 
 
-});
+}).catch(err=>console.log(err));
 
 const port = 4000;
 app.listen(port, () => { console.log(`Server listening on port ${port}.`); });
