@@ -48,28 +48,20 @@ table {
 }
 
 
-.App-header {
+.welcome-text {
     font-family: 'Yellowtail', cursive;
     font-size: 3em;
     text-shadow: 2px 2px #f7eaf2 ;
     padding-right: 15px;
-    margin-top: 5px;
+    margin-top: 80px;
     ;
-}
-
-.App {
-  text-align: center;
-}
-
-
-.painting-display {
-    /*background-color: white;*/
 }
 
 .painting-styles {
     max-height: 250px;
     padding:1px;
     border:1px solid #989a9b;
+    margin-bottom: 7px;
 }
 
 h1 {
@@ -79,15 +71,16 @@ h1 {
     margin-bottom:5px;
 }
 
-h3 {
+.size-and-price {
     font-family: 'Quicksand', sans-serif;
-    font-size: 1.15em;
+    font-size: 1em;
 }
 
-button {
+.add-to-cart {
     background-color: white;
     color: black;
     border: 1px solid #666666;
     border-radius: 4px;
     font-family: 'Quicksand', sans-serif;
+    font-size: 1em;
 }

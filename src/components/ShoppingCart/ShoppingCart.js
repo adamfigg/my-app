@@ -73,8 +73,7 @@ class ShoppingCart extends Component {
                     <div className='painting-display' key={i}>
                         <h1>{cart.title}</h1>
                         <img className='painting-styles' src={cart.imageurl} />
-                        <h3>size: {cart.size}</h3>
-                        <h3>price: ${cart.price}</h3>
+                        <h3 className='size-and-price'>size: {cart.size} price: ${cart.price}</h3>
                         <button onClick={() => { this.removeFromCart(cart.cart_id) }}>Remove from cart</button>
                         <br />
                     </div>
@@ -82,16 +81,24 @@ class ShoppingCart extends Component {
 
             })
         return (
+            <div>    
+                <div className='big-box'>
+                    <div className='fixed-total'> 
+                        <div className='total-due'>
+                        Your shopping cart total is: ${this.state.total}
+                        </div>
+                        <div className='pay-button'>
+                            {StripePayment}
+                        </div>
+                    </div>        
+            </div>
             <div className="App">
                 <div>
                     <style>@import url('https://fonts.googleapis.com/css?family=Yellowtail');</style>
                     <style>@import url('https://fonts.googleapis.com/css?family=Quicksand');</style>
-                    Your shopping cart total is: ${this.state.total}
-                    <div>
-                        {StripePayment}
-                    </div>
                     {ShoppingCart}
                 </div>
+            </div>
             </div>
         );
     }

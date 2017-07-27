@@ -41,12 +41,11 @@ axios.post(`/api/addToCart/${paintingId}`)
     const Paintings = this.state.paintings
       .map((data, i) => {
         return (
-          <div className='painting-display' key={i}>
+          <div className='painting-display-style' key={i}>
             <h1>{data.title}</h1>
             <img className='painting-styles' src={data.imageurl} />
-            <h3>size: {data.size}</h3>
-            <h3>price: ${data.price}</h3>
-            <button onClick= {()=>{this.addToCart(data.id)}}>Add to shopping cart</button>
+            <h3 className='size-and-price'>size: {data.size} price: ${data.price}</h3>
+            <button className='add-to-cart' onClick= {()=>{this.addToCart(data.id)}}>Add to shopping cart</button>
             <br />
           </div>
         )
@@ -54,25 +53,16 @@ axios.post(`/api/addToCart/${paintingId}`)
       })
     return (
       <div className="App">
-        <div className="App-header">
+        <div className="welcome-text">
           <style>@import url('https://fonts.googleapis.com/css?family=Yellowtail');</style>
           <style>@import url('https://fonts.googleapis.com/css?family=Quicksand');</style>
           <p>Carlsbad Cottage Art Boutique</p>
         </div>
-
         {Paintings}
-
       </div>
     );
   }
 }
-
-
-
-
-// function example(piainting.id) {
-// this is where the request to the server is made
-// }
 
 
 export default Home;
