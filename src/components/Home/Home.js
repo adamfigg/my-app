@@ -44,7 +44,7 @@ axios.post(`/api/addToCart/${paintingId}`)
           <div className='painting-display-style' key={i}>
             <h1>{data.title}</h1>
             <img className='painting-styles' src={data.imageurl} />
-            <h3 className='size-and-price'>size: {data.size} price: ${data.price}</h3>
+            <h3 className='size-and-price'>size: {data.size}  price: ${data.price}</h3>
             <button className='add-to-cart' onClick= {()=>{this.addToCart(data.id)}}>Add to shopping cart</button>
             <br />
           </div>

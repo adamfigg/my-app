@@ -10,17 +10,17 @@ class ShoppingCart extends Component {
         super();
         this.state = {
             cart: [],
-            currentUser: {},
+            currentUser: '',
             total: ''
         }
 
 
     }
-        //More stripe copy and paste for token
+    //More stripe copy and paste for token
     onToken = (token) => {
         token.card = void 0;
         console.log('token', token);
-        axios.post('http://localhost:4000/api/payment', { token, amount: this.state.total*100 }).then(response => {
+        axios.post('http://localhost:4000/api/payment', { token, amount: this.state.total * 100 }).then(response => {
             alert('Thanks so much for support your local artists!')
         });
     }
@@ -38,6 +38,15 @@ class ShoppingCart extends Component {
                         this.setState({
                             total: res.data[0].sum
                         })
+                    })
+            })
+        //this is the code trying to get the login to shop message.... :(      
+        axios.get('/auth/me')
+            .then(res => {
+                console.log(res.data)
+                if (res.data.displayName)
+                    this.setState({
+                        currentUser: res.data.name["givenName"]
                     })
             })
     }
@@ -64,8 +73,8 @@ class ShoppingCart extends Component {
         const StripePayment = (<StripeCheckout
             token={this.onToken}
             stripeKey={stripe.pub_key}
-            amount={this.state.total*100} 
-            currency="USD"/>);
+            amount={this.state.total * 100}
+            currency="USD" />);
 
         const ShoppingCart = this.state.cart
             .map((cart, i) => {
@@ -80,25 +89,31 @@ class ShoppingCart extends Component {
                 )
 
             })
+
+        const LogInMessage = <div><h1 className='login-message'>It looks like you're not logged in! Log in to add items to your shopping cart.</h1>
+        <div className='login-thanks'>Thanks!</div></div>
         return (
-            <div>    
+            <div>
                 <div className='big-box'>
-                    <div className='fixed-total'> 
+                    <div className='fixed-total'>
                         <div className='total-due'>
-                        Your shopping cart total is: ${this.state.total}
+                            Your shopping cart total is: ${this.state.total}
                         </div>
                         <div className='pay-button'>
                             {StripePayment}
                         </div>
-                    </div>        
-            </div>
-            <div className="App">
-                <div>
-                    <style>@import url('https://fonts.googleapis.com/css?family=Yellowtail');</style>
-                    <style>@import url('https://fonts.googleapis.com/css?family=Quicksand');</style>
-                    {ShoppingCart}
+                    </div>
                 </div>
-            </div>
+                <div className="App">
+                    <div className='cart-welcome'>
+                        <h2>Your Shopping Cart</h2>
+                    </div>    
+                    <div className="cart-display">
+                        <style>@import url('https://fonts.googleapis.com/css?family=Yellowtail');</style>
+                        <style>@import url('https://fonts.googleapis.com/css?family=Quicksand');</style>
+                        {this.state.currentUser === "" ? LogInMessage : ShoppingCart}
+                    </div>
+                </div>
             </div>
         );
     }

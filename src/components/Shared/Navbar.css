@@ -2,9 +2,33 @@
     justify-content: space-around;
     display: flex;
     align-items: center;
-    background-color: #fcdad1;
     position: fixed;
     top:0;
     width: 100%;
     height: 62px;
+    border-bottom: 1px solid darkslategrey;
+    box-shadow: 5px 5px 20px lightgray;
+
+  -webkit-animation: bgcolorchange 4s infinite; /* Chrome, Safari, Opera */ 
+  animation: 15s infinite bgcolorchange;
+}
+@keyframes bgcolorchange {
+ 0% {
+    background-color: #F796BC;
+  }
+  25% {
+    background-color: #FFAF9A;
+  }
+  50% {
+    background-color: #FFD09A;
+  }
+  75% {
+    background-color: #FF7855;
+  }
+  90% {
+    background-color: #FDC3D8;
+  }
+  100% {
+    background-color: #F796BC;
+  }
 }

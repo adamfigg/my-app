@@ -60,7 +60,7 @@ table {
 .painting-styles {
     max-height: 250px;
     padding:1px;
-    border:1px solid #989a9b;
+    box-shadow:1px 1px 2px 3px #ccc;
     margin-bottom: 7px;
 }
 
@@ -74,12 +74,13 @@ h1 {
 .size-and-price {
     font-family: 'Quicksand', sans-serif;
     font-size: 1em;
+    margin-bottom: 5px;
 }
 
 .add-to-cart {
     background-color: white;
     color: black;
-    border: 1px solid #666666;
+    border: 2px solid #666666;
     border-radius: 4px;
     font-family: 'Quicksand', sans-serif;
     font-size: 1em;
