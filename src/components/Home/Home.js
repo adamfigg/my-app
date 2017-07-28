@@ -41,13 +41,15 @@ axios.post(`/api/addToCart/${paintingId}`)
     const Paintings = this.state.paintings
       .map((data, i) => {
         return (
-          <div className='painting-display-style' key={i}>
+          
+            <div className="product-wrapper" key={i}>
             <h1>{data.title}</h1>
             <img className='painting-styles' src={data.imageurl} />
             <h3 className='size-and-price'>size: {data.size}  price: ${data.price}</h3>
             <button className='add-to-cart' onClick= {()=>{this.addToCart(data.id)}}>Add to shopping cart</button>
             <br />
-          </div>
+            </div>
+          
         )
 
       })
@@ -58,7 +60,9 @@ axios.post(`/api/addToCart/${paintingId}`)
           <style>@import url('https://fonts.googleapis.com/css?family=Quicksand');</style>
           <p>Carlsbad Cottage Art Boutique</p>
         </div>
+        <div className='painting-display-style'>
         {Paintings}
+        </div>
       </div>
     );
   }

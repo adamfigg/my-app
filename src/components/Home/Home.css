@@ -85,3 +85,33 @@ h1 {
     font-family: 'Quicksand', sans-serif;
     font-size: 1em;
 }
+
+/*The start of my home page media queries*/
+
+@media only screen and (min-width: 750px) {
+
+.painting-display-style {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.product-wrapper {
+    padding: 25px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}

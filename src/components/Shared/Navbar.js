@@ -44,7 +44,9 @@ componentDidMount() {
                <Link to='/about'>
                <img  src={require("./hello-speech-bubble.png")}/>
                </Link> 
+                    {/*<div className="login-button">*/}
                     {this.state.user===''?login_btn:logout_btn}
+                    {/*</div>*/}
             </div>
         );
     }

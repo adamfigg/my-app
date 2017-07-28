@@ -92,9 +92,8 @@ class ShoppingCart extends Component {
 
         const LogInMessage = <div><h1 className='login-message'>It looks like you're not logged in! Log in to add items to your shopping cart.</h1>
         <div className='login-thanks'>Thanks!</div></div>
-        return (
-            <div>
-                <div className='big-box'>
+
+        const showBigBox = (<div className='big-box'>
                     <div className='fixed-total'>
                         <div className='total-due'>
                             Your shopping cart total is: ${this.state.total}
@@ -103,7 +102,14 @@ class ShoppingCart extends Component {
                             {StripePayment}
                         </div>
                     </div>
-                </div>
+                </div>)
+
+
+        return (
+            <div>
+                {this.state.total ? showBigBox : null }
+                
+                }
                 <div className="App">
                     <div className='cart-welcome'>
                         <h2>Your Shopping Cart</h2>

@@ -143,3 +143,36 @@ button {
     text-shadow: 2px 2px #f7eaf2 ;
     -webkit-transform: rotate(-8deg);
 }
+
+
+@media only screen and (min-width: 750px) {
+    
+
+.cart-display {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+}
+
+.painting-display{
+    padding: 25px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+}
